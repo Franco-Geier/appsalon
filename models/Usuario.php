@@ -22,12 +22,24 @@ class Usuario extends ActiveRecord {
     public function __construct($args = []) {
         $this->id = $args["id"] ?? null;
         $this->nombre = $args["nombre"] ?? "";
-        $this->nombre = $args["apellido"] ?? "";
-        $this->nombre = $args["email"] ?? "";
-        $this->nombre = $args["password"] ?? "";
-        $this->nombre = $args["telefono"] ?? "";
-        $this->nombre = $args["admin"] ?? null;
-        $this->nombre = $args["confirmado"] ?? null;
-        $this->nombre = $args["token"] ?? "";
+        $this->apellido = $args["apellido"] ?? "";
+        $this->email = $args["email"] ?? "";
+        $this->password = $args["password"] ?? "";
+        $this->telefono = $args["telefono"] ?? "";
+        $this->admin = $args["admin"] ?? null;
+        $this->confirmado = $args["confirmado"] ?? null;
+        $this->token = $args["token"] ?? "";
+    }
+
+    // Mensajes de validación para la creación de la cuenta
+    public function validarNuevaCuenta() {
+        if(!$this->nombre) {
+            self::$alertas["error"][] = "El nombre del cliente es obligatorio";
+        }
+
+        if(!$this->apellido) {
+            self::$alertas["error"][] = "El apellido del cliente es obligatorio";
+        }
+        return self::$alertas;
     }
 }
