@@ -29,7 +29,8 @@ $rutas = [
     "/logout" => "logout",
     "/olvide" => "olvide",
     "/recuperar" => "recuperar",
-    "/crear-cuenta" => "crear"
+    "/crear-cuenta" => "crear",
+    "/confirmar-cuenta" => "confirmar"
 ];
 
 foreach ($rutas as $ruta => $metodo) {
