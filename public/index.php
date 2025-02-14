@@ -24,13 +24,18 @@ $router = new Router();
 // $router->post("/crear-cuenta", [LoginController::class, "crear"]);
 
 
+// $router->get("/confirmar-cuenta", [LoginController::class, "confirmar"]);
+
+// $router->get("/mensaje", [LoginController::class, "mensaje"]);
+
 $rutas = [
     "/" => "login",
     "/logout" => "logout",
     "/olvide" => "olvide",
     "/recuperar" => "recuperar",
     "/crear-cuenta" => "crear",
-    "/confirmar-cuenta" => "confirmar"
+    "/confirmar-cuenta" => "confirmar",
+    "/mensaje" => "mensaje"
 ];
 
 foreach ($rutas as $ruta => $metodo) {

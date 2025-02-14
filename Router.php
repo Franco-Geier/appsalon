@@ -29,7 +29,8 @@ class Router
         // $auth = $_SESSION['login'] ?? null;
 
         // $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
-        $currentUrl = str_replace('/appsalon/public', '', $_SERVER['REQUEST_URI']);
+        // $currentUrl = str_replace('/appsalon/public', '', $_SERVER['REQUEST_URI']);
+        $currentUrl = str_replace('/appsalon/public', '', strtok($_SERVER['REQUEST_URI'], '?'));
         $method = $_SERVER['REQUEST_METHOD'];
 
         if ($method === 'GET') {
