@@ -31,6 +31,7 @@ class Usuario extends ActiveRecord {
         $this->token = $args["token"] ?? "";
     }
 
+
     // Mensajes de validación para la creación de la cuenta
     public function validarNuevaCuenta() {
         if(!$this->nombre) {
@@ -89,8 +90,14 @@ class Usuario extends ActiveRecord {
         $this->token = uniqid();
     }
 
+
     // Comprueba la password y si está verificado
     public function comprobarPasswordAndVerificado($password) {
         $resultado = password_verify($password, $this->password);
+        if(!$resultado || !$this->confirmado) {
+            self::$alertas["error"][] = "Password incorrecto o u cuenta no ha sido confirmada";
+        } else {
+            return true;
+        }
     }
 }
