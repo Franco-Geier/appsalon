@@ -66,6 +66,14 @@ class Usuario extends ActiveRecord {
     }
 
 
+    public function validarEmail() {
+        if(!$this->email) {
+            self::$alertas["error"][] = "El E-mail es obligatorio";
+        }
+        return self::$alertas;
+    }
+
+
     // Revisa si el usuario ya existe
     public function existeUsuario() {
         $query = " SELECT * FROM " . self:: $tabla . " WHERE email = '" . $this->email . "' LIMIT 1";
