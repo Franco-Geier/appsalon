@@ -51,9 +51,11 @@ class LoginController {
         ]);
     }
 
+
     public static function logout() {
         echo "desde logout";
     }
+
 
     public static function olvide(Router $router) {
         $alertas = [];
@@ -104,8 +106,22 @@ class LoginController {
 
         if($_SERVER["REQUEST_METHOD"] === "POST") {
             // Leer el nuevo password y guardarlo
+            $password = new Usuario($_POST);
+            $alertas = $password->validarPassword();
         }
-        
+
+        if(empty($alertas)) {
+            $usuario->password = null;
+            $usuario->password = $password->password;
+            $usuario->hashPassword();
+            $usuario->token = null;
+
+            $resultado = $usuario->guardar();
+            if($resultado) {
+                header("Location: ./");
+            }
+        }
+
         $alertas = Usuario::getAlertas();
         $router->render("auth/recuperar-password", [
             "alertas" => $alertas,

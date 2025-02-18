@@ -7,7 +7,7 @@
 
 <?php if($error) return; ?>
 
-<form class="formulario" action="POST">
+<form class="formulario" method="POST">
     <div class="campo">
         <label for="password"></label>
         <input type="password" name="password" id="password" placeholder="Tu Nuevo Password">
