@@ -20,8 +20,11 @@ function iniciarApp() {
     botonesPaginador(); // Agrega o quita los botones del paginador
     paginaAnterior();
     paginaSiguiente();
+
     consultarAPI(); // Consulta la API en el backend de PHP
-    nombreCliente();
+    
+    nombreCliente(); // Añade el nombre del cliente al objeto de cita
+    seleccionarFecha(); // Añade la fecha de la cita en el objeto
 }
 
 
@@ -164,4 +167,40 @@ function seleccionarServicio(servicio) {
 function nombreCliente() {
     cita.nombre = document.querySelector("#nombre").value;
     
+}
+
+
+function seleccionarFecha() {
+    const inputFecha = document.querySelector("#fecha");
+    inputFecha.addEventListener("input", function(e) {
+        const dia = new Date(e.target.value).getUTCDay();
+
+        if([6, 0].includes(dia)) {
+            e.target.value = "";
+            mostrarAlerta("Fines de semana no permitidos", "error");
+        } else {
+            cita.fecha = e.target.value;
+        }
+    });
+}
+
+
+function mostrarAlerta(mensaje, tipo) {
+    // Previene que se genere más de una alerta
+    const alertaPrevia = document.querySelector(".alerta");
+    if(alertaPrevia) return;
+
+    // Scripting para crear la alerta
+    const alerta = document.createElement("DIV");
+    alerta.textContent = mensaje;
+    alerta.classList.add("alerta");
+    alerta.classList.add(tipo);
+
+    const formulario = document.querySelector(".formulario");
+    formulario.appendChild(alerta);
+
+    // Eliminar la alerta
+    setTimeout(() => {
+        alerta.remove();
+    }, 3000);
 }
