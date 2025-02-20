@@ -25,6 +25,7 @@ function iniciarApp() {
     
     nombreCliente(); // Añade el nombre del cliente al objeto de cita
     seleccionarFecha(); // Añade la fecha de la cita en el objeto
+    seleccionarHora(); // Añade la hora de la cita en el objeto
 }
 
 
@@ -172,16 +173,44 @@ function nombreCliente() {
 
 function seleccionarFecha() {
     const inputFecha = document.querySelector("#fecha");
-    inputFecha.addEventListener("input", function(e) {
-        const dia = new Date(e.target.value).getUTCDay();
 
-        if([6, 0].includes(dia)) {
+    // Bloquear fechas de fin de semana
+    inputFecha.addEventListener("focus", function () {
+        const hoy = new Date();
+        const año = hoy.getFullYear();
+        const mes = String(hoy.getMonth() + 1).padStart(2, "0");
+        const dia = String(hoy.getDate()).padStart(2, "0");
+
+        // Establecer fecha mínima (hoy)
+        inputFecha.min = `${año}-${mes}-${dia}`;
+    });
+
+    inputFecha.addEventListener("input", function (e) {
+        const diaSeleccionado = new Date(e.target.value).getUTCDay();
+
+        if ([6, 0].includes(diaSeleccionado)) { // 6 = Sábado, 0 = Domingo
             e.target.value = "";
             mostrarAlerta("Fines de semana no permitidos", "error");
         } else {
             cita.fecha = e.target.value;
         }
     });
+}
+
+
+function seleccionarHora() {
+    const inputHora = document.querySelector("#hora");
+    inputHora.addEventListener("input", function(e) {
+        const horaCita = e.target.value;
+        const hora = horaCita.split(":")[0];
+        if(hora < 10 || hora > 18) {
+            e.target.value = "";
+            mostrarAlerta("Hora no válida", "error");
+        } else {
+            cita.hora = e.target.value;
+        }
+    })
+
 }
 
 
