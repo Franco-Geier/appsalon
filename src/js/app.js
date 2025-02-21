@@ -205,15 +205,25 @@ function seleccionarHora() {
     const inputHora = document.querySelector("#hora");
     inputHora.addEventListener("input", function(e) {
         const horaCita = e.target.value;
-        const hora = horaCita.split(":")[0];
-        if(hora < 10 || hora > 18) {
+        let [hora, minutos] = horaCita.split(":").map(Number);
+
+        if (hora < 10 || hora > 18) {
             e.target.value = "";
             mostrarAlerta("Hora no válida", "error", ".formulario");
-        } else {
-            cita.hora = e.target.value;
+            return;
         }
-    })
 
+        // Redondear minutos al múltiplo de 15 más cercano
+        minutos = Math.round(minutos / 15) * 15;
+        if (minutos === 60) {
+            minutos = 0;
+            hora += 1;
+        }
+
+        // Actualizar el input con la hora corregida
+        e.target.value = `${hora.toString().padStart(2, "0")}:${minutos.toString().padStart(2, "0")}`;
+        cita.hora = e.target.value;
+    });
 }
 
 
@@ -255,16 +265,13 @@ function mostrarResumen() {
     }
 
     const {nombre, fecha, hora, servicios} = cita;
-    
-    const nombreCliente = document.createElement("P");
-    nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
 
-    const fechaCita = document.createElement("P");
-    fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
+    // Heading para servicios en resumen
+    const headingServicios = document.createElement("H3");
+    headingServicios.textContent = "Resumen de Servicios";
+    resumen.appendChild(headingServicios);
 
-    const horaCita = document.createElement("P");
-    horaCita.innerHTML = `<span>Hora:</span> ${hora}`;
-
+    // Iterando y mostrando los servicios
     servicios.forEach(servicio => {
         const {id, precio, nombre} = servicio;
         const contenedorServicio = document.createElement("DIV");
@@ -280,7 +287,21 @@ function mostrarResumen() {
         contenedorServicio.appendChild(precioServicio);
 
         resumen.appendChild(contenedorServicio);
-    })
+    });
+
+    // Heading para cita en resumen
+    const headingCita = document.createElement("H3");
+    headingCita.textContent = "Resumen de Cita";
+    resumen.appendChild(headingCita);
+
+    const nombreCliente = document.createElement("P");
+    nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
+
+    const fechaCita = document.createElement("P");
+    fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
+
+    const horaCita = document.createElement("P");
+    horaCita.innerHTML = `<span>Hora:</span> ${hora} Horas`;
 
     resumen.appendChild(nombreCliente);
     resumen.appendChild(fechaCita);
