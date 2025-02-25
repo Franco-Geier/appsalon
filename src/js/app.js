@@ -347,15 +347,35 @@ async function reservarCita() {
 
     // console.log([...datos]);
 
-    // Petición hacia la api
-    const url = "http://localhost/appsalon/public/api/citas";
+    try {
+        // Petición hacia la api
+        const url = "http://localhost/appsalon/public/api/citas";
 
-    const respuesta = await fetch(url ,{
-        method: "POST",
-        body: datos
-    });
+        const respuesta = await fetch(url ,{
+            method: "POST",
+            body: datos
+        });
 
-    const resultado = await respuesta.json();
-    console.log(resultado);
+        const resultado = await respuesta.json();
 
+        if(resultado.resultado) {
+            Swal.fire({
+                icon: "success",
+                title: "Cita creada",
+                text: "Tu cita fue creada correctamente",
+                confirmButtonText: "OK",
+                timer: 3000
+            }).then(() => {
+                window.location.reload();
+            })
+        }
+    } catch(error) {
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Hubo un error al guardar la cita",
+            confirmButtonText: "OK",
+            timer: 3000
+        })
+    }
 }
