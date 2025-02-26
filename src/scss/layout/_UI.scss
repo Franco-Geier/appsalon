@@ -1,5 +1,6 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
+@use "sass:color";
 
 .contenedor-app {
     @include m.tablet {
@@ -27,5 +28,20 @@
         width: 95%;
         margin: 0 auto;
         padding: 3rem 0;
+    }
+}
+
+.barra {
+    margin: 3.5rem 0;
+
+    @include m.tablet {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .boton {
+        margin: 0;
+        @include m.boton(color.adjust(v.$negro, $lightness: 2%), v.$blanco);
     }
 }
