@@ -1,0 +1,30 @@
+@use 'base/variables' as v;
+@use "sass:color";
+
+.citas {
+    list-style: none;
+    padding: 0;
+
+    li {
+        padding: 1rem;
+        border-top: 1px solid v.$blanco;
+        transition: box-shadow .2s ease-in-out;
+
+        p {
+            font-weight: v.$bold;
+            color: v.$azul;
+        }
+
+        span,
+        .servicio {
+            font-weight: v.$regular;
+            color: v.$blanco;
+        }
+
+        &:hover {
+            box-shadow: inset 5px 0 0 color.adjust(v.$azul, $lightness: 20%), 
+                        inset -5px 0 0 color.adjust(v.$azul, $lightness: 20%),
+                        inset 0 -5px 0 color.adjust(v.$azul, $lightness: 20%); // Abajo
+            }
+    }
+}
