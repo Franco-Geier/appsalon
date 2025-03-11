@@ -28,11 +28,14 @@
         width: 95%;
         margin: 0 auto;
         padding: 3rem 0;
+        @include m.tablet {
+            overflow: overlay;
+        }
     }
 }
 
 .barra {
-    margin: 3.5rem 0;
+    margin: 3.5rem 1rem;
 
     @include m.tablet {
         display: flex;
