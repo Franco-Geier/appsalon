@@ -11,7 +11,11 @@ const cita = {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    iniciarApp();
+    if (document.querySelector("#paso-1")) { // Verifica si la sección existe antes de llamar a iniciarApp()
+        iniciarApp();
+    } else {
+        iniciarBuscador();
+    }
 });
 
 
