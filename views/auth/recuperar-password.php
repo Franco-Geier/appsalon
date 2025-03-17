@@ -15,7 +15,7 @@
     <input type="submit" class="boton" value="Guardar Nuevo Password">
 </form>
 
-<div class="acciones">
+<div class="acciones contenedor">
     <a href="./">¿Ya tienes cuenta? Iniciar Sesión</a>
     <a href="./crear-cuenta">¿Aún no tienes cuenta? Obtener una</a>
 </div>

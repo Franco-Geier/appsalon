@@ -3,7 +3,7 @@
 
 <?php include_once __DIR__ . "/../templates/alertas.php"; ?>
 
-<form class="formulario" method="POST" action="./">
+<form class="contenedor" method="POST" action="./">
     <div class="campo">
         <label for="email">Email</label>
         <input type="email" name="email" id="email" placeholder="Tu E-mail" autocomplete="email">
@@ -17,7 +17,7 @@
     <input class="boton" type="submit" value="Iniciar Sesión">
 </form>
 
-<div class="acciones">
+<div class="acciones contenedor">
     <a href="./crear-cuenta">¿Aún no tienes cuenta? Crear una</a>
     <a href="./olvide">¿Olvidaste tu password?</a>
 </div>

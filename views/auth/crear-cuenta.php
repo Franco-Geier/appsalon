@@ -34,7 +34,7 @@
     <input class="boton" type="submit" value="Crear Cuenta">
 </form>
 
-<div class="acciones">
+<div class="acciones contenedor">
     <a href="./">¿Ya tienes una cuenta? Inicia Sesión</a>
     <a href="./olvide">¿Olvidaste tu password?</a>
 </div>

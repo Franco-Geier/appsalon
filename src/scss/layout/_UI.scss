@@ -10,12 +10,12 @@
     }
 
     .imagen {
-        height: 20rem;
         background-image: image-set(
             url(../img/1.avif) 1x,
             url(../img/1.webp) 1x,
             url(../img/1.jpg) 1x
         );
+        height: 20rem;
         background-size: cover;
         background-position: center center;
 
@@ -25,11 +25,12 @@
     }
 
     .app {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
-        padding: 3rem 0;
+        padding: 1rem 0;
+        overflow-x: hidden;
         @include m.tablet {
-            overflow: overlay;
+            overflow-y: auto;
         }
     }
 }
