@@ -49,3 +49,20 @@
         @include m.boton(color.adjust(v.$negro, $lightness: 2%), v.$blanco);
     }
 }
+
+.barra-servicios {
+    margin-bottom: v.$separacion;
+
+    @include m.tablet {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        align-content: center;
+        column-gap: 1rem;
+        justify-content: center;   
+    }
+
+    .boton {
+        margin: 0 0 1rem 0;
+    }
+}
