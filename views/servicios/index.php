@@ -11,7 +11,7 @@
             <p>Nombre: <span><?php echo $servicio->nombre; ?></span></p>
             <p>Precio: <span>$<?php echo $servicio->precio; ?></span></p>
             <div class="acciones">
-                <a class="boton" href="./actualizar?id=<?php echo $servicio->id; ?>">Actualizar</a>
+                <a class="boton" href="/appsalon/public/servicios/actualizar?id=<?php echo $servicio->id; ?>">Actualizar</a>
                 <form action="/appsalon/public/servicios/eliminar" method="POST">
                     <input type="hidden" name="id" value="<?php echo $servicio->id; ?>">
                     <input type="submit" value="Borrar" class="boton-eliminar">

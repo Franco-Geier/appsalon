@@ -29,6 +29,6 @@ function isAuth() : void {
 
 function isAdmin() : void {
     if(!isset($_SESSION["admin"])) {
-        header("Location: ./");
+        header("Location: /appsalon/public/");
     }
 }
